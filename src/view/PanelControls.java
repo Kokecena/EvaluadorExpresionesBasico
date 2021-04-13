@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import model.GBMetodos;
 import model.MiRender;
 
@@ -26,7 +25,8 @@ import model.MiRender;
  */
 public class PanelControls extends JPanel {
 
-    private JTextField txtExpression;
+    private JTextArea txtExpression;
+    private JScrollPane jsExpression;
     private JScrollPane jsInput;
     private JScrollPane jsInputs;
     private JTextArea txtInput;
@@ -54,7 +54,7 @@ public class PanelControls extends JPanel {
         Insets insets = new Insets(5, 5, 5, 5);
         panelInput = new JPanel(new GridBagLayout());
         GBMetodos.addComponentGBLayout(panelInput, new JLabel("Expresión: "), 0, 0, GridBagConstraints.NORTHEAST, insets);
-        GBMetodos.addComponentGBLayout(panelInput, txtExpression, 2, 0, insets);
+        GBMetodos.addComponentGBLayout(panelInput, jsExpression, 2, 0, insets);
         GBMetodos.addComponentGBLayout(panelInput, new JLabel("Entradas: "), 0, 2, GridBagConstraints.NORTHEAST, insets);
         GBMetodos.addComponentGBLayout(panelInput, jsInput, 2, 2, insets);
         GBMetodos.addComponentGBLayout(panelInput, btnClear, 0, 4, insets);
@@ -78,7 +78,8 @@ public class PanelControls extends JPanel {
      * asi como tambien colocando caracteristicas 
      */
     private void initComponents() {
-        txtExpression = new JTextField(18);
+        txtExpression = new JTextArea(2,18);
+        jsExpression = new JScrollPane(txtExpression,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         txtInput = new JTextArea(8, 18);
         jsInput = new JScrollPane(txtInput);
         btnCheck = new JButton("Comprobar");
@@ -108,7 +109,7 @@ public class PanelControls extends JPanel {
      * Campo donde se encuentra la expresion ingresada
      * @return Campo de expresion 
      */
-    public JTextField getTxtExpression() {
+    public JTextArea getTxtExpression() {
         return txtExpression;
     }
 
