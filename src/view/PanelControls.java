@@ -21,10 +21,11 @@ import model.MiRender;
 
 /**
  * Panel donde se encuentran distribuidos todos los controles del programa
+ *
  * @author jovan
  */
 public class PanelControls extends JPanel {
-
+    
     private JTextArea txtExpression;
     private JScrollPane jsExpression;
     private JScrollPane jsInput;
@@ -47,8 +48,8 @@ public class PanelControls extends JPanel {
     }
 
     /**
-     * Metodo que crea el panel de entradas asi como tambien la distribucion
-     * de todos los controles
+     * Metodo que crea el panel de entradas asi como tambien la distribucion de
+     * todos los controles
      */
     private void createInputPanel() {
         Insets insets = new Insets(5, 5, 5, 5);
@@ -63,8 +64,8 @@ public class PanelControls extends JPanel {
     }
 
     /**
-     * Metodo que crea el panel donde se encontrara la lista de entradas
-     * y mostrara si son validas o no
+     * Metodo que crea el panel donde se encontrara la lista de entradas y
+     * mostrara si son validas o no
      */
     private void createCheckPanel() {
         panelCheck = new JPanel();
@@ -75,20 +76,20 @@ public class PanelControls extends JPanel {
     }
 
     /**
-     * Metodo encargado de inicializar todos los controles
-     * asi como tambien colocando caracteristicas 
+     * Metodo encargado de inicializar todos los controles asi como tambien
+     * colocando caracteristicas
      */
     private void initComponents() {
-        txtExpression = new JTextArea(2,18);
+        txtExpression = new JTextArea(2, 18);
         txtExpression.setToolTipText("<html>Introduce la expresion regular que quieras comprobar.<br> Ej. [0-9]{10}</html>");
-        jsExpression = new JScrollPane(txtExpression,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jsExpression = new JScrollPane(txtExpression, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         txtInput = new JTextArea(8, 18);
         txtInput.setToolTipText("<html>Introduce las cadenas de caracteres que quieras comprobar"
-                                + "<br> utilizando el salto de linea para separarlos."
-                                + "<br> Ejemplo: "
-                                + "<br>     Hola como estas"
-                                + "<br>     Korewa Giorno Giovanna Yumegaru! "
-                                + "<br>     783-123-4567</html>");
+                + "<br> utilizando el salto de linea para separarlos."
+                + "<br> Ejemplo: "
+                + "<br>     Hola como estas"
+                + "<br>     Korewa Giorno Giovanna Yumegaru! "
+                + "<br>     783-123-4567</html>");
         jsInput = new JScrollPane(txtInput);
         btnCheck = new JButton("Comprobar");
         btnCheck.setToolTipText("Comprobar las cadenas ingresadas");
@@ -118,7 +119,8 @@ public class PanelControls extends JPanel {
 
     /**
      * Campo donde se encuentra la expresion ingresada
-     * @return Campo de expresion 
+     *
+     * @return Campo de expresion
      */
     public JTextArea getTxtExpression() {
         return txtExpression;
@@ -126,7 +128,8 @@ public class PanelControls extends JPanel {
 
     /**
      * Campo donde se encuentran todas las entradas ingresadas
-     * @return Campo de entradas 
+     *
+     * @return Campo de entradas
      */
     public JTextArea getTxtInput() {
         return txtInput;
@@ -134,7 +137,8 @@ public class PanelControls extends JPanel {
 
     /**
      * Lista donde se muestra si las entradas fueron validas o no
-     * @return 
+     *
+     * @return
      */
     public JList getJlInputs() {
         return jlInputs;
@@ -142,7 +146,8 @@ public class PanelControls extends JPanel {
 
     /**
      * Es el boton comprobar
-     * @return Boton de comprobar 
+     *
+     * @return Boton de comprobar
      */
     public JButton getBtnCheck() {
         return btnCheck;
@@ -150,6 +155,7 @@ public class PanelControls extends JPanel {
 
     /**
      * Es el boton limpiar
+     *
      * @return Boton de limpieza
      */
     public JButton getBtnClear() {
@@ -158,10 +164,11 @@ public class PanelControls extends JPanel {
 
     /**
      * Modelo vacio de la lista
+     *
      * @return Modelo por defecto de la lista
      */
     public DefaultListModel getListModel() {
         return listModel;
     }
-
+    
 }
