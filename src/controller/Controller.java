@@ -13,8 +13,8 @@ import view.ViewWindow;
  */
 public class Controller implements ActionListener {
 
-    private ViewWindow view;
-    private Logic model;
+    private final ViewWindow view;
+    private final Logic model;
 
     /**
      * Recibe como parametro el modelo y la vista del programa
@@ -64,5 +64,4 @@ public class Controller implements ActionListener {
         view.getControls().getBtnCheck().addActionListener(e);
         view.getControls().getBtnClear().addActionListener(e);
     }
-
 }

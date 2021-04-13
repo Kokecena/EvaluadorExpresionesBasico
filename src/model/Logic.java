@@ -32,7 +32,7 @@ public class Logic {
     /**
      * Controles del programa
      */
-    private PanelControls controls;
+    private final PanelControls controls;
 
     /**
      * Constructor de la clase logica recibe como argumento y se le asigna a la
