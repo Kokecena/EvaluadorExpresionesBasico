@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -11,6 +6,8 @@ import model.Logic;
 import view.ViewWindow;
 
 /**
+ * Controlador de los controles que contiene la ventana Implementando el modelo
+ * MVC
  *
  * @author jovan
  */
@@ -19,16 +16,32 @@ public class Controller implements ActionListener {
     private ViewWindow view;
     private Logic model;
 
+    /**
+     * Recibe como parametro el modelo y la vista del programa
+     *
+     * @param model La clase Logica
+     * @param view La clase Vista ventana
+     */
     public Controller(Logic model, ViewWindow view) {
         this.model = model;
         this.view = view;
         actionListener(this);
     }
 
-    public void initWindow(){
+    /**
+     * *
+     * Muestra la ventana principal
+     */
+    public void initWindow() {
         view.setVisible(true);
     }
-    
+
+    /**
+     * De acuerdo al boton presionado recibira el comando y se ejecutara el
+     * metodo relacionado a este
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
@@ -42,6 +55,11 @@ public class Controller implements ActionListener {
         }
     }
 
+    /**
+     * Se añaden los escuchas a los controles de botones
+     *
+     * @param e
+     */
     private void actionListener(ActionListener e) {
         view.getControls().getBtnCheck().addActionListener(e);
         view.getControls().getBtnClear().addActionListener(e);

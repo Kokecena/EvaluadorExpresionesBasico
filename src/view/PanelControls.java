@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.awt.Cursor;
@@ -26,7 +21,7 @@ import model.GBMetodos;
 import model.MiRender;
 
 /**
- *
+ * Panel donde se encuentran distribuidos todos los controles del programa
  * @author jovan
  */
 public class PanelControls extends JPanel {
@@ -42,13 +37,19 @@ public class PanelControls extends JPanel {
     private JPanel panelInput;
     private JPanel panelCheck;
 
+    /**
+     * Constructor del panel control
+     */
     public PanelControls() {
         initComponents();
         addComponents();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
     }
 
+    /**
+     * Metodo que crea el panel de entradas asi como tambien la distribucion
+     * de todos los controles
+     */
     private void createInputPanel() {
         Insets insets = new Insets(5, 5, 5, 5);
         panelInput = new JPanel(new GridBagLayout());
@@ -58,9 +59,12 @@ public class PanelControls extends JPanel {
         GBMetodos.addComponentGBLayout(panelInput, jsInput, 2, 2, insets);
         GBMetodos.addComponentGBLayout(panelInput, btnClear, 0, 4, insets);
         GBMetodos.addComponentGBLayout(panelInput, btnCheck, 2, 4, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, insets);
-
     }
 
+    /**
+     * Metodo que crea el panel donde se encontrara la lista de entradas
+     * y mostrara si son validas o no
+     */
     private void createCheckPanel() {
         panelCheck = new JPanel();
         panelCheck.setBorder(BorderFactory.createTitledBorder("Validación"));
@@ -69,6 +73,10 @@ public class PanelControls extends JPanel {
         panelCheck.add(jsInputs);
     }
 
+    /**
+     * Metodo encargado de inicializar todos los controles
+     * asi como tambien colocando caracteristicas 
+     */
     private void initComponents() {
         txtExpression = new JTextField(18);
         txtInput = new JTextArea(8, 18);
@@ -85,7 +93,10 @@ public class PanelControls extends JPanel {
         btnClear.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    public void addComponents() {
+    /**
+     * Metodo donde se añaden los componentes al contenedor principal
+     */
+    private void addComponents() {
         createInputPanel();
         createCheckPanel();
         add(panelInput);
@@ -93,26 +104,50 @@ public class PanelControls extends JPanel {
         add(panelCheck);
     }
 
+    /**
+     * Campo donde se encuentra la expresion ingresada
+     * @return Campo de expresion 
+     */
     public JTextField getTxtExpression() {
         return txtExpression;
     }
 
+    /**
+     * Campo donde se encuentran todas las entradas ingresadas
+     * @return Campo de entradas 
+     */
     public JTextArea getTxtInput() {
         return txtInput;
     }
 
+    /**
+     * Lista donde se muestra si las entradas fueron validas o no
+     * @return 
+     */
     public JList getJlInputs() {
         return jlInputs;
     }
 
+    /**
+     * Es el boton comprobar
+     * @return Boton de comprobar 
+     */
     public JButton getBtnCheck() {
         return btnCheck;
     }
 
+    /**
+     * Es el boton limpiar
+     * @return Boton de limpieza
+     */
     public JButton getBtnClear() {
         return btnClear;
     }
 
+    /**
+     * Modelo vacio de la lista
+     * @return Modelo por defecto de la lista
+     */
     public DefaultListModel getListModel() {
         return listModel;
     }

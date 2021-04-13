@@ -1,36 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /**
- *
+ * Clase vista del programa
  * @author jovan
  */
 public class ViewWindow extends JFrame {
-    
+
     private PanelControls controls;
-    
-    public ViewWindow (){
+
+    /**
+     * Constructor de la clase ViewWindow
+     */
+    public ViewWindow() {
         initFrame();
     }
+
     
-    private void initFrame(){
+    /**
+     * Metodo donde se inicializan todos los componentes de la ventana
+     */
+    private void initFrame() {
         setTitle("E. de expresiones");
         setLayout(new BorderLayout());
         controls = new PanelControls();
-        add(controls,BorderLayout.CENTER);
+        add(controls, BorderLayout.CENTER);
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    /**
+     * Metodo que retorna el panel donde estan alojados los controles del programa
+     * 
+     * @return Panel de controles
+     */
     public PanelControls getControls() {
         return controls;
     }
