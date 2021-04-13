@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.Toolkit;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import view.PanelControls;
@@ -8,6 +8,7 @@ import view.ViewWindow;
 
 /**
  * Clase encargada de la logica del programa
+ *
  * @author jovan
  */
 public class Logic {
@@ -16,17 +17,17 @@ public class Logic {
      * Expresion ingresada
      */
     private String expression;
-    
+
     /**
      * Entradas ingresadas
      */
     private String inputs;
-    
+
     /**
      * Errores generados
      */
     private String error;
-    
+
     /**
      * Controles del programa
      */
@@ -60,8 +61,7 @@ public class Logic {
         if (isEmptyFields()) {
             checkInputs();
         } else {
-            Toolkit.getDefaultToolkit().beep();
-            JOptionPane.showMessageDialog(controls, error, "¡Error!", JOptionPane.ERROR_MESSAGE);
+            Metodos.dialogMessage(error, "¡ERROR!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -80,12 +80,18 @@ public class Logic {
         StringBuilder sb = new StringBuilder();
         DefaultListModel newListModel = controls.getListModel();
         String[] inputsArr = inputs.split("\n");
-        for (String input : inputsArr) {
-            sb.append(input).append(input.matches(expression) ? " Valido" : " No valido");
-            newListModel.addElement(sb.toString());
-            sb.delete(0, sb.length());
+        try {
+            for (String input : inputsArr) {
+
+                sb.append(input).append(input.matches(expression) ? " Valido" : " No valido");
+
+                newListModel.addElement(sb.toString());
+                sb.delete(0, sb.length());
+            }
+            controls.getJlInputs().setModel(newListModel);
+        } catch (PatternSyntaxException ex) {
+            Metodos.dialogMessage(ex.getMessage(), "¡Patron invalido!", JOptionPane.WARNING_MESSAGE);
         }
-        controls.getJlInputs().setModel(newListModel);
     }
 
     /**
@@ -97,22 +103,9 @@ public class Logic {
         error = "";
         expression = controls.getTxtExpression().getText();
         inputs = controls.getTxtInput().getText();
-        error += checkField(expression, "Ingrese una expresion");
-        error += checkField(inputs, "Ingrese al menos una entrada");
+        error += Metodos.checkField(expression, "Ingrese una expresion");
+        error += Metodos.checkField(inputs, "Ingrese al menos una entrada");
         return error.isEmpty();
-    }
-
-    /**
-     * Metodo para revisar que el String del campo no este vacio
-     *
-     * @param field Campo a ingresar
-     * @param msj Mensaje de error
-     * @return regresa un String con el mensaje de error o vacio
-     */
-    private String checkField(String field, String msj) {
-        String err;
-        err = field.isEmpty() ? "- " + msj + "\n" : "";
-        return err;
     }
 
 }
