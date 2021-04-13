@@ -1,5 +1,6 @@
 package model;
 
+import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -80,11 +81,10 @@ public class Logic {
         StringBuilder sb = new StringBuilder();
         DefaultListModel newListModel = controls.getListModel();
         String[] inputsArr = inputs.split("\n");
+        String regex = expression.replaceAll(" ", "");
         try {
             for (String input : inputsArr) {
-
-                sb.append(input).append(input.matches(expression) ? " Valido" : " No valido");
-
+                sb.append(input).append(Pattern.matches(regex, input) ? " Valido" : " No valido");
                 newListModel.addElement(sb.toString());
                 sb.delete(0, sb.length());
             }
