@@ -53,9 +53,10 @@ public class PanelControls extends JPanel {
     private void createInputPanel() {
         Insets insets = new Insets(5, 5, 5, 5);
         panelInput = new JPanel(new GridBagLayout());
+        panelInput.setBorder(BorderFactory.createTitledBorder("Entradas"));
         GBMetodos.addComponentGBLayout(panelInput, new JLabel("Expresión: "), 0, 0, GridBagConstraints.NORTHEAST, insets);
         GBMetodos.addComponentGBLayout(panelInput, jsExpression, 2, 0, insets);
-        GBMetodos.addComponentGBLayout(panelInput, new JLabel("Entradas: "), 0, 2, GridBagConstraints.NORTHEAST, insets);
+        GBMetodos.addComponentGBLayout(panelInput, new JLabel("Cadenas: "), 0, 2, GridBagConstraints.NORTHEAST, insets);
         GBMetodos.addComponentGBLayout(panelInput, jsInput, 2, 2, insets);
         GBMetodos.addComponentGBLayout(panelInput, btnClear, 0, 4, insets);
         GBMetodos.addComponentGBLayout(panelInput, btnCheck, 2, 4, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, insets);
@@ -67,7 +68,7 @@ public class PanelControls extends JPanel {
      */
     private void createCheckPanel() {
         panelCheck = new JPanel();
-        panelCheck.setBorder(BorderFactory.createTitledBorder("Validación"));
+        panelCheck.setBorder(BorderFactory.createTitledBorder("Salidas"));
         panelCheck.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelCheck.add(Box.createVerticalStrut(5));
         panelCheck.add(jsInputs);

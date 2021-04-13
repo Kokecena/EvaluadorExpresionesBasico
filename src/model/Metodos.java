@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
