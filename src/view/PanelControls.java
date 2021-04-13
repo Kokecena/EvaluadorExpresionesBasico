@@ -80,13 +80,23 @@ public class PanelControls extends JPanel {
      */
     private void initComponents() {
         txtExpression = new JTextArea(2,18);
+        txtExpression.setToolTipText("<html>Introduce la expresion regular que quieras comprobar.<br> Ej. [0-9]{10}</html>");
         jsExpression = new JScrollPane(txtExpression,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         txtInput = new JTextArea(8, 18);
+        txtInput.setToolTipText("<html>Introduce las cadenas de caracteres que quieras comprobar"
+                                + "<br> utilizando el salto de linea para separarlos."
+                                + "<br> Ejemplo: "
+                                + "<br>     Hola como estas"
+                                + "<br>     Korewa Giorno Giovanna Yumegaru! "
+                                + "<br>     783-123-4567</html>");
         jsInput = new JScrollPane(txtInput);
         btnCheck = new JButton("Comprobar");
+        btnCheck.setToolTipText("Comprobar las cadenas ingresadas");
         btnClear = new JButton("Limpiar");
+        btnClear.setToolTipText("Limpiar todos los datos");
         listModel = new DefaultListModel();
         jlInputs = new JList(listModel);
+        jlInputs.setToolTipText("Aqui se mostraran si las cadenas son validas o no");
         jlInputs.setCellRenderer(new MiRender());
         jsInputs = new JScrollPane(jlInputs);
         btnCheck.setActionCommand("check");
