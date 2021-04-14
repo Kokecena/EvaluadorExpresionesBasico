@@ -40,6 +40,7 @@ public class main {
         ViewWindow v = new ViewWindow();
         Logic m = new Logic(v);
         Controller c = new Controller(m, v);
+        c.actionListener(c);
         return c;
     }
 

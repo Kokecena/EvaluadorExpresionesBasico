@@ -25,7 +25,6 @@ public class Controller implements ActionListener {
     public Controller(Logic model, ViewWindow view) {
         this.model = model;
         this.view = view;
-        actionListener(this);
     }
 
     /**
@@ -46,12 +45,8 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         switch (command) {
-            case "check":
-                model.check();
-                break;
-            case "clear":
-                model.clear();
-                break;
+            case "check" -> model.check();
+            case "clear" -> model.clear();
         }
     }
 
@@ -60,8 +55,9 @@ public class Controller implements ActionListener {
      *
      * @param e
      */
-    private void actionListener(ActionListener e) {
+    public void actionListener(ActionListener e) {
         view.getControls().getBtnCheck().addActionListener(e);
         view.getControls().getBtnClear().addActionListener(e);
     }
+
 }

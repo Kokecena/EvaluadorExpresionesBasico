@@ -30,7 +30,6 @@ public class ViewWindow extends JFrame {
         setTitle("Evaluador de expresiones");
         setLayout(new BorderLayout());
         addComponents();
-        setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
