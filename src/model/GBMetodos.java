@@ -71,4 +71,32 @@ public class GBMetodos {
         gbc.anchor = anchor;
         container.add(component, gbc);
     }
+
+    /**
+     * Metodo para un mejor respondimiento al cambio de tamaño de los campos de
+     * texto
+     *
+     * @param container Contenedor afectado
+     * @param component Componente a agregar
+     * @param gridx Localizacion en X
+     * @param gridy Localizacion en Y
+     * @param fill Estirar componente Horizontal, Vertical, etc
+     * @param inset Espaciado
+     * @param gridwidth Especifica el numero de celdas que ocupara
+     * @param weightx Distribucion horizontal del objeto
+     * @param ipadx El largo del objeto
+     * @param ipady El ancho del objeto
+     */
+    public static void addComponentGBLayout(Container container, Component component, int gridx, int gridy, int fill, Insets inset, int gridwidth, double weightx, int ipadx, int ipady) {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = inset;
+        gbc.gridx = gridx;
+        gbc.gridy = gridy;
+        gbc.fill = fill;
+        gbc.weightx = weightx;
+        gbc.gridwidth = gridwidth;
+        gbc.ipady = ipady;
+        gbc.ipadx = ipadx;
+        container.add(component, gbc);
+    }
 }

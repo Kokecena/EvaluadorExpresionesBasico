@@ -45,15 +45,17 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         switch (command) {
-            case "check" -> model.check();
-            case "clear" -> model.clear();
+            case "check" ->
+                model.check();
+            case "clear" ->
+                model.clear();
         }
     }
 
     /**
      * Se añaden los escuchas a los controles de botones
      *
-     * @param e
+     * @param e Componente escucha
      */
     public void actionListener(ActionListener e) {
         view.getControls().getBtnCheck().addActionListener(e);

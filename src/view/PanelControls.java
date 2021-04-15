@@ -1,12 +1,12 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Cursor;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import model.GBMetodos;
-import model.MiRender;
+import model.MyRender;
 
 /**
  * Panel donde se encuentran distribuidos todos los controles del programa
@@ -25,7 +25,16 @@ import model.MiRender;
  * @author jovan
  */
 public class PanelControls extends JPanel {
-    
+
+    private final JPanel panelInput;
+    private final JPanel panelCheck;
+    private final JSeparator separator;
+    private final MyRender myRenderCell;
+    private final GridBagLayout inputLayout;
+    private final BoxLayout panelLayout;
+    private final BorderLayout checkLayout;
+    private final JLabel etiExpresion;
+    private final JLabel etiCadenas;
     private JTextArea txtExpression;
     private JScrollPane jsExpression;
     private JScrollPane jsInput;
@@ -35,16 +44,23 @@ public class PanelControls extends JPanel {
     private DefaultListModel listModel;
     private JButton btnCheck;
     private JButton btnClear;
-    private JPanel panelInput;
-    private JPanel panelCheck;
 
     /**
      * Constructor del panel control
      */
     public PanelControls() {
+        this.checkLayout = new BorderLayout();
+        this.panelLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        this.inputLayout = new GridBagLayout();
+        this.myRenderCell = new MyRender();
+        this.separator = new JSeparator();
+        this.panelCheck = new JPanel();
+        this.panelInput = new JPanel();
+        this.etiCadenas = new JLabel("Cadenas");
+        this.etiExpresion = new JLabel("Expresión");
         initComponents();
         addComponents();
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(panelLayout);
     }
 
     /**
@@ -53,12 +69,12 @@ public class PanelControls extends JPanel {
      */
     private void createInputPanel() {
         Insets insets = new Insets(5, 5, 5, 5);
-        panelInput = new JPanel(new GridBagLayout());
+        panelInput.setLayout(inputLayout);
         panelInput.setBorder(BorderFactory.createTitledBorder("Entradas"));
-        GBMetodos.addComponentGBLayout(panelInput, new JLabel("Expresión: "), 0, 0, GridBagConstraints.NORTHEAST, insets);
-        GBMetodos.addComponentGBLayout(panelInput, jsExpression, 2, 0, insets);
-        GBMetodos.addComponentGBLayout(panelInput, new JLabel("Cadenas: "), 0, 2, GridBagConstraints.NORTHEAST, insets);
-        GBMetodos.addComponentGBLayout(panelInput, jsInput, 2, 2, insets);
+        GBMetodos.addComponentGBLayout(panelInput, etiExpresion, 0, 0, GridBagConstraints.NORTHEAST, insets);
+        GBMetodos.addComponentGBLayout(panelInput, jsExpression, 2, 0, GridBagConstraints.HORIZONTAL, insets, GridBagConstraints.RELATIVE, 1.0, 30, 16);
+        GBMetodos.addComponentGBLayout(panelInput, etiCadenas, 0, 2, GridBagConstraints.NORTHEAST, insets);
+        GBMetodos.addComponentGBLayout(panelInput, jsInput, 2, 2, GridBagConstraints.HORIZONTAL, insets, GridBagConstraints.RELATIVE, 1.0, 30, 80);
         GBMetodos.addComponentGBLayout(panelInput, btnClear, 0, 4, insets);
         GBMetodos.addComponentGBLayout(panelInput, btnCheck, 2, 4, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, insets);
     }
@@ -68,11 +84,10 @@ public class PanelControls extends JPanel {
      * mostrara si son validas o no
      */
     private void createCheckPanel() {
-        panelCheck = new JPanel();
         panelCheck.setBorder(BorderFactory.createTitledBorder("Salidas"));
-        panelCheck.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelCheck.add(Box.createVerticalStrut(5));
-        panelCheck.add(jsInputs);
+        panelCheck.setLayout(checkLayout);
+        panelCheck.setPreferredSize(new Dimension(350, 200));
+        panelCheck.add(jsInputs, BorderLayout.CENTER);
     }
 
     /**
@@ -80,29 +95,41 @@ public class PanelControls extends JPanel {
      * colocando caracteristicas
      */
     private void initComponents() {
-        txtExpression = new JTextArea(2, 18);
-        txtExpression.setToolTipText("<html>Introduce la expresion regular que quieras comprobar.<br> Ej. [0-9]{10}</html>");
+        /**
+         * Instanciando controles
+         */
+        txtExpression = new JTextArea();
         jsExpression = new JScrollPane(txtExpression, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        txtInput = new JTextArea(8, 18);
+        txtInput = new JTextArea();
+        jsInput = new JScrollPane(txtInput);
+        btnCheck = new JButton("Comprobar");
+        btnClear = new JButton("Limpiar");
+        listModel = new DefaultListModel();
+        jlInputs = new JList(listModel);
+        jlInputs.setCellRenderer(myRenderCell);
+        jsInputs = new JScrollPane(jlInputs);
+        /**
+         * Añadiendo tips de ayuda a componentes
+         */
+        txtExpression.setToolTipText("<html>Introduce la expresion regular que quieras comprobar.<br> Ej. [0-9]{10}</html>");
         txtInput.setToolTipText("<html>Introduce las cadenas de caracteres que quieras comprobar"
                 + "<br> utilizando el salto de linea para separarlos."
                 + "<br> Ejemplo: "
                 + "<br>     Hola como estas"
                 + "<br>     Korewa Giorno Giovanna Yumegaru! "
                 + "<br>     783-123-4567</html>");
-        jsInput = new JScrollPane(txtInput);
-        btnCheck = new JButton("Comprobar");
         btnCheck.setToolTipText("Comprobar las cadenas ingresadas");
-        btnClear = new JButton("Limpiar");
         btnClear.setToolTipText("Limpiar todos los datos");
-        listModel = new DefaultListModel();
-        jlInputs = new JList(listModel);
         jlInputs.setToolTipText("Aqui se mostraran si las cadenas son validas o no");
-        jlInputs.setCellRenderer(new MiRender());
-        jsInputs = new JScrollPane(jlInputs);
+        /**
+         * Añadiendo comandos de accion a los botones
+         */
         btnCheck.setActionCommand("check");
-        btnCheck.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnClear.setActionCommand("clear");
+        /**
+         * Añadiendo tipo de cursor a los botones
+         */
+        btnCheck.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnClear.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
@@ -113,7 +140,7 @@ public class PanelControls extends JPanel {
         createInputPanel();
         createCheckPanel();
         add(panelInput);
-        add(new JSeparator());
+        add(separator);
         add(panelCheck);
     }
 
@@ -170,5 +197,5 @@ public class PanelControls extends JPanel {
     public DefaultListModel getListModel() {
         return listModel;
     }
-    
+
 }

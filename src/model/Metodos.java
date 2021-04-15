@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Container;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
@@ -27,12 +28,13 @@ public class Metodos {
      * Metodo que llama al metodo JOptionPan, muestra un mensaje de dialogo y
      * emite un pitido
      *
+     * @param c Contenedor de donde se llama
      * @param msg Mensaje del cuadro de dialogo
      * @param title Titulo del cuadro de dialogo
      * @param typeMessage Tipo de mensaje del cuadro de dialogo
      */
-    public static void dialogMessage(String msg, String title, int typeMessage) {
+    public static void dialogMessage(Container c, String msg, String title, int typeMessage) {
         Toolkit.getDefaultToolkit().beep();
-        JOptionPane.showMessageDialog(null, msg, title, typeMessage);
+        JOptionPane.showMessageDialog(c, msg, title, typeMessage);
     }
 }

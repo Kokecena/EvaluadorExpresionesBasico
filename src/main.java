@@ -2,6 +2,7 @@
 import controller.Controller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 import model.Logic;
 import view.ViewWindow;
@@ -45,7 +46,10 @@ public class main {
     }
 
     public static void main(String[] args) {
-        setWindowTheme();
-        init().initWindow();
+        SwingUtilities.invokeLater(() -> {
+            setWindowTheme();
+            init().initWindow();
+        });
+
     }
 }

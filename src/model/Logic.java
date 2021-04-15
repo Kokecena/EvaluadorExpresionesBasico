@@ -62,7 +62,7 @@ public class Logic {
         if (isEmptyFields()) {
             checkInputs();
         } else {
-            Metodos.dialogMessage(error, "¡ERROR!", JOptionPane.ERROR_MESSAGE);
+            Metodos.dialogMessage(controls, error, "¡ERROR!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -77,9 +77,9 @@ public class Logic {
      *
      */
     private void checkInputs() {
-        controls.getListModel().clear();
         StringBuilder sb = new StringBuilder();
         DefaultListModel newListModel = controls.getListModel();
+        newListModel.clear();
         String[] inputsArr = inputs.split("\n");
         String regex = expression.replaceAll(" ", "");
         try {
@@ -90,8 +90,15 @@ public class Logic {
             }
             controls.getJlInputs().setModel(newListModel);
         } catch (PatternSyntaxException ex) {
-            Metodos.dialogMessage(ex.getMessage(), "¡Patron invalido!", JOptionPane.WARNING_MESSAGE);
+            Metodos.dialogMessage(controls, ex.getMessage(), "¡Patron invalido!", JOptionPane.WARNING_MESSAGE);
         }
+        inputsArr = null;
+        regex = null;
+        newListModel = null;
+        sb = null;
+        error = null;
+        expression = null;
+        inputs = null;
     }
 
     /**

@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Box;
 import javax.swing.JFrame;
@@ -12,13 +13,14 @@ import javax.swing.JFrame;
  */
 public class ViewWindow extends JFrame {
 
-    private PanelControls controls;
+    private final PanelControls controls;
     private final int SPACE = 12;
 
     /**
      * Constructor de la clase ViewWindow
      */
     public ViewWindow() {
+        this.controls = new PanelControls();
         initFrame();
     }
 
@@ -30,6 +32,7 @@ public class ViewWindow extends JFrame {
         setTitle("Evaluador de expresiones");
         setLayout(new BorderLayout());
         addComponents();
+        setMinimumSize(new Dimension(this.getWidth(), this.getHeight()));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -38,7 +41,6 @@ public class ViewWindow extends JFrame {
      * Distribuye los componentes de la ventana
      */
     private void addComponents() {
-        controls = new PanelControls();
         add(Box.createVerticalStrut(SPACE), BorderLayout.NORTH);
         add(Box.createHorizontalStrut(SPACE), BorderLayout.EAST);
         add(controls, BorderLayout.CENTER);
